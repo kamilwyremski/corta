@@ -1,0 +1,140 @@
+
+{% extends "main.tpl" %}
+
+{% block content %}
+<div class="page-header">
+	<h1><i class="fas fa-list-alt"></i> {{ 'Links'|trans }}</h1>
+	<p>{{ 'Here you can see links added to the site'|trans }}</p>
+</div>
+
+{% include 'alert.tpl' %}
+
+<form method="get" class="form" role="form">
+	<input type="hidden" name="controller" value="links">
+	<input type="hidden" name="search">
+	<div class="form-group form-group-sm row">
+		<div class="col-xl-1 col-sm-4">
+			<label for="id">{{ 'ID'|trans }}:</label>
+			<input type="number" name="id" title="{{ 'ID'|trans }}" placeholder="{{ 'ID'|trans }}" value="{{ get.id }}" class="form-control">
+		</div>
+		<div class="col-xl-2 col-sm-4">
+			<label for="url">{{ 'URL'|trans }}:</label>
+			<input type="text" name="url" title="{{ 'URL'|trans }}" placeholder="{{ 'URL'|trans }}" value="{{ get.url }}" class="form-control">
+		</div>
+		<div class="col-xl-2 col-sm-4">
+			<label for="short_url">{{ 'Short URL'|trans }}:</label>
+			<input type="text" name="short_url" title="{{ 'Short URL'|trans }}" placeholder="{{ 'Short URL'|trans }}" value="{{ get.short_url }}" class="form-control">
+		</div>
+		<div class="col-lg-3 col-sm-6">
+			<label for="date">{{ 'Date added'|trans }}: </label>
+			<div class="input-group">
+				<input name="date_from" title="{{ 'Select the starting date'|trans }}" type="text" max="{{ 'now'|date('Y-m-d') }}" value="{{ get.date_from }}" class="form-control datepicker">
+				<div class="input-group-append input-group-prepend">
+					<span class="input-group-text"> - </span>
+				</div>
+				<input name="date_to" title="{{ 'Select the end date'|trans }}" type="text" max="{{ 'now'|date('Y-m-d') }}" value="{{ get.date_to }}" class="form-control datepicker">
+			</div>
+		</div>
+		<div class="col-lg-2 col-sm-6">
+			<label for="ip">{{ 'IP address'|trans }}:</label>
+			<input type="text" name="ip" title="{{ 'IP address'|trans }}" placeholder="{{ 'IP address'|trans }}" value="{{ get.ip }}" class="form-control">
+		</div>
+		<div class="col-lg-2 col-sm-6">
+			<label>&nbsp;</label><br>
+			<input type="submit" value="{{ 'Search'|trans }}" class="btn btn-primary text-uppercase btn-block">
+		</div>
+	</div>
+</form>
+<br>
+{% if links %}
+	<div class="table-responsive">
+		<table class="table parent_select_checkbox table-striped table-bordered table-sm">
+			<tr>
+				<th class="text-center"><input type="checkbox" class="select_checkbox" title="{{ 'Select all'|trans }}"></th>
+				<th class="text-center">{{ 'ID'|trans }}<br>
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=id" title="{{ 'Sort'|trans }}" class="fas fa-sort-amount-up"></a>
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=id&sort_desc" title="{{ 'Sort descending'|trans }}" class="fas fa-sort-amount-down"></a>
+				</th>
+				<th class="list-links-td">{{ 'URL'|trans }}<br>
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=url" title="{{ 'Sort'|trans }}" class="fas fa-sort-amount-up"></a>
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=url&sort_desc" title="{{ 'Sort descending'|trans }}" class="fas fa-sort-amount-down"></a>
+				</th>
+				<th>{{ 'Short URL'|trans }}<br>
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=short_url" title="{{ 'Sort'|trans }}" class="fas fa-sort-amount-up"></a>
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=short_url&sort_desc" title="{{ 'Sort descending'|trans }}" class="fas fa-sort-amount-down"></a>
+				</th>
+				<th class="text-center">{{ 'View count'|trans }}<br>{{ 'all'|trans }}
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=view_all" title="{{ 'Sort'|trans }}" class="fas fa-sort-amount-up"></a>
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=view_all&sort_desc" title="{{ 'Sort descending'|trans }}" class="fas fa-sort-amount-down"></a>
+					 / {{ 'unique'|trans }}
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=view_unique" title="{{ 'Sort'|trans }}" class="fas fa-sort-amount-up"></a>
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=view_unique&sort_desc" title="{{ 'Sort descending'|trans }}" class="fas fa-sort-amount-down"></a>
+				</th>
+				<th class="text-center">{{ 'Date added'|trans }}
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=date" title="{{ 'Sort'|trans }}" class="fas fa-sort-amount-up"></a>
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=date&sort_desc" title="{{ 'Sort descending'|trans }}" class="fas fa-sort-amount-down"></a>
+				</th>
+				<th>{{ 'IP address'|trans }}<br>
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=ip" title="{{ 'Sort'|trans }}" class="fas fa-sort-amount-up"></a>
+					<a href="?{{ pagination.page_url.sort_admin }}&sort=ip&sort_desc" title="{{ 'Sort descending'|trans }}" class="fas fa-sort-amount-down"></a>
+				</th>
+				<th class="text-center">{{ 'Delete'|trans }}</th>
+			</tr>
+
+			{% for item in links %}
+				<tr>
+					<td class="text-center"><input type="checkbox" name="links[]" value="{{ item.id }}" form="form_selected_links"></td>
+					<td class="text-center">{{ item.id }}</td>
+					<td class="list-links-td"><a href="{{ item.url }}" target="_blank">{{ item.url }}</a></td>
+					<td><a href="{{ path('short_url',0,item.short_url) }}" target="_blank">{{ item.short_url }}</a></td>
+					<td class="text-center">{{ item.view_all }} / {{ item.view_unique}}</td>
+					<td class="text-center">{{ item.date|date('Y-m-d H:i') }}</td>
+					<td class="text-center">{{ item.ip }}</td>
+					<td class="text-center"><button class="btn btn-link fas fa-trash-alt text-danger" title="{{ 'Delete link'|trans }}" data-toggle="modal" data-target="#remove_{{ item.id }}"></button></td>
+				</tr>
+
+				<div class="modal fade" id="remove_{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="{{ 'Delete link'|trans }}">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">{{ 'Delete link'|trans }}</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							</div>
+							<form method="post">
+								<input type="hidden" name="action" value="remove_link">
+								<input type="hidden" name="id" value="{{ item.id }}">
+								<input type="hidden" name="ip" value="{{ item.ip }}">
+								<input type="hidden" name="token" value="{{ generateToken('remove_link') }}">
+								<div class="modal-body">
+									<p>{{ 'Do you really want to delete'|trans }}: {{ item.url }}?</p>
+									<label><input type="checkbox" name="add_ip_black_list"> {{ 'Add IP to black list'|trans }}</label>
+								</div>
+								<div class="modal-footer">
+									<input type="button" class="btn btn-secondary" data-dismiss="modal" value="{{ 'Cancel'|trans }}">
+									<input type="submit" class="btn btn-danger" value="{{ 'Execute'|trans }}">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</table>
+	</div>
+	<br>
+	<form method="post" id="form_selected_links" class="form-inline">
+		<input type="hidden" name="token" value="{{ generateToken('action_links') }}">
+		<label for="action" class="my-1 mr-2">{{ 'Selected'|trans }}: </label>
+		<select name="action" required title="{{ 'Select the appropriate action'|trans }}" class="form-control my-1 mr-sm-2">
+			<option value="">-- {{ 'select'|trans }} --</option>
+			<option value="remove_links">{{ 'Delete links'|trans }}</option>
+		</select>
+		<input type="submit" value="{{ 'Execute'|trans }}!" class="btn btn-danger my-1">
+	</form>
+	<br>
+
+	{% include 'pagination.tpl' %}
+
+{% else %}
+	<h4 class="text-danger">{{ 'Nothing found'|trans }}</h4>
+{% endif %}
+{% endblock %}

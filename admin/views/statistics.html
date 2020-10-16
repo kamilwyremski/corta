@@ -1,0 +1,75 @@
+
+{% extends "main.tpl" %}
+
+{% block content %}
+<link rel="stylesheet" href="js/jqplot/jquery.jqplot.css" />
+<script src="js/jqplot/jquery.jqplot.min.js"></script>
+<script src="js/jqplot/jqplot.highlighter.min.js"></script>
+<script src="js/jqplot/jqplot.dateAxisRenderer.min.js"></script>
+<script src="js/jqplot.statistics.js"></script>
+
+<div class="page-header">
+	<h1><i class="fas fa-check-circle"></i> {{ 'Site statistics'|trans }}</h1>
+</div>
+
+<div class="table-responsive">
+	<table class="table table-striped">
+		<tr>
+			<td><b>{{ 'Links'|trans }}:</b></td>
+			<td><b>{{ statistics.links }}</b></td>
+			<td><b>{{ 'Redirects to links'|trans }}:</b></td>
+			<td><b>{{ statistics.logs_links }}</b></td>
+		</tr>
+		<tr>
+			<td>{{ 'Sends mails'|trans }}:</td>
+			<td>{{ statistics.logs_mails }}</td>
+			<td>{{ 'Mails in queue'|trans }}:</td>
+			<td>{{ statistics.mails_queue }}</td>
+		</tr>
+		<tr>
+			<td><b>{{ 'Subscribed to the newsletter'|trans }}:</b></td>
+			<td><b>{{ statistics.newsletter }}</b></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</div>
+<br><br>
+<div class="form container">
+	<div class="form-group row">
+		<div class="col-xl-3 col-sm-6">
+			<label>{{ 'Blue line'|trans }}: </label>
+			<select id="statitics_select_1" title="{{ 'Choose what should present the blue line'|trans }}" class="form-control">
+				<option value=""> -- </option>
+				<option value="links" selected>{{ 'Adding links'|trans }}</option>
+				<option value="logs_links">{{ 'Redirects to links'|trans }}</option>
+				<option value="newsletter">{{ 'Subscribed to the newsletter'|trans }}</option>
+			</select>
+		</div>
+		<div class="col-xl-3 col-sm-6">
+			<label>{{ 'Orange line'|trans }}: </label>
+			<select id="statitics_select_2" title="{{ 'Choose what should present the orange line'|trans }}" class="form-control">
+				<option value=""> -- </option>
+				<option value="links">{{ 'Adding links'|trans }}</option>
+				<option value="logs_links" selected>{{ 'Redirects to links'|trans }}</option>
+				<option value="newsletter">{{ 'Subscribed to the newsletter'|trans }}</option>
+			</select>
+			</select>
+		</div>
+		<div class="col-xl-2 col-sm-4">
+			<label>{{ 'Date start'|trans }}: </label>
+			<input id="statistics_date_from" title="{{ 'Select the starting date for analysis'|trans }}" type="text" value="{{ 'now'|date_modify('-30 day')|date('Y-m-d') }}" max="{{ 'now'|date('Y-m-d') }}" class="form-control datepicker">
+		</div>
+		<div class="col-xl-2 col-sm-4">
+			<label>{{ 'Date finish'|trans }}: </label>
+			<input id="statistics_date_to" title="{{ 'Select the end date for analysis'|trans }}" type="text" value="{{ 'now'|date('Y-m-d') }}" max="{{ 'now'|date('Y-m-d') }}" class="form-control datepicker">
+		</div>
+		<div class="col-xl-2 col-sm-4">
+			<label>&nbsp;</label><br>
+			<input id="statistics_generate" type="submit" value="{{ 'Generate'|trans }}" class="btn btn-primary text-uppercase">
+		</div>
+	</div>
+	<div id="jqplot"></div>
+</div>
+<br><br>
+{% endblock %}

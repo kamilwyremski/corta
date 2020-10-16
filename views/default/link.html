@@ -1,0 +1,21 @@
+
+{% extends "main.tpl" %}  
+
+
+
+
+{% block head %}
+	<meta http-equiv="refresh" content="{{ settings.time_to_redirect }};url={{ link.url }}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="page_box">
+	<div class="container">
+		{% if settings.ads_1 %}<div class="ads d-print-none">{{ settings.ads_1|raw }}</div>{% endif %}
+		<h4 class="text-center">{{ 'You will be redirected to the site in a moment'|trans }}: <a href="{{ link.url }}">{{ link.url }}</a></h4>
+	</div>
+</div>
+
+{% endblock %}
+

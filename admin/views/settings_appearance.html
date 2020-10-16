@@ -1,0 +1,95 @@
+
+{% extends "main.tpl" %}
+
+{% block content %}
+<div class="page-header">
+	<h1><i class="fas fa-cog"></i> {{ 'Appearance settings'|trans }}</h1>
+	<p class="mb-0">{{ 'Here you can edit the settings of the service'|trans }}</p>
+	<p class="text-danger">{{ 'Folder and file names should not contain spaces or Polish letters'|trans }}</p>
+</div>
+
+{% include 'alert.tpl' %}
+
+<form method="post" class="form" role="form">
+	<input type="hidden" name="action" value="save_settings_appearance">
+	<input type="hidden" name="token" value="{{ generateToken('admin_save_settings_appearance') }}">
+	<div class="form-group row">
+		<label for="template" class="col-sm-2 col-form-label">{{ 'Template'|trans }}:</label>
+		<div class="col-sm-10">
+			<select name="template" title="{{ 'Template'|trans }}" required class="form-control">
+				{% for item in templates %}
+					<option value="{{ item }}" {% if item==settings.template %}selected{% endif %}>{{ item }}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+	<hr>
+	<div class="form-group row">
+		<label for="logo" class="col-sm-2 col-form-label">{{ 'Logo'|trans }}:</label>
+		<div class="col-sm-10">
+			<button class="btn btn-link open_roxy" data-target="#roxySelectFile">
+				<img data-roxy_name="logo" src="{% if settings.logo %}{{ settings.logo }}{% else %}images/no_image.png{% endif %}" onerror="this.src='images/no_image.png'" alt="{{ 'Logo'|trans }}" style="max-height: 100px">
+			</button><br><br>
+			<input type="text" name="logo" value="{{ settings.logo }}" placeholder="{{ 'Logo'|trans }}" title="{{ 'Logo'|trans }}" class="form-control">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="logo_facebook" class="col-sm-2 col-form-label">{{ 'Logo - Facebook'|trans }}:</label>
+		<div class="col-sm-10">
+			<button class="btn btn-link open_roxy" data-target="#roxySelectFile">
+				<img data-roxy_name="logo_facebook" src="{% if settings.logo_facebook %}{{ settings.logo_facebook }}{% else %}images/no_image.png{% endif %}" onerror="this.src='images/no_image.png'" alt="{{ 'Logo - Facebook'|trans }}" style="max-height: 100px">
+			</button><br><br>
+			<input type="text" name="logo_facebook" value="{{ settings.logo_facebook }}" placeholder="{{ 'Logo - Facebook'|trans }}" title="{{ 'Logo - Facebook'|trans }}" class="form-control">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="favicon" class="col-sm-2 col-form-label">{{ 'Favicon'|trans }}:</label>
+		<div class="col-sm-10">
+			<button class="btn btn-link open_roxy" data-target="#roxySelectFile">
+				<img data-roxy_name="favicon" src="{% if settings.favicon %}{{ settings.favicon }}{% else %}images/no_image.png{% endif %}" onerror="this.src='images/no_image.png'" alt="{{ 'Favicon'|trans }}" style="max-height: 100px">
+			</button><br><br>
+			<input type="text" name="favicon" value="{{ settings.favicon }}" placeholder="{{ 'Favicon'|trans }}" title="{{ 'Favicon'|trans }}" class="form-control">
+		</div>
+	</div>
+	<hr>
+	<div class="form-group">
+		<label><input type="checkbox" name="rodo_alert" title="{{ 'Show message about personal data processing (RODO)'|trans }}" {% if settings.rodo_alert %}checked{% endif %}> {{ 'Show message about personal data processing (RODO)'|trans }}</label><br>
+		<label for="rodo_alert_text">{{ 'Content of alert about processing personal data'|trans }}:</label>
+		<textarea name="rodo_alert_text" title="{{ 'Content of alert about processing personal data'|trans }}" class="form-control">{{ settings.rodo_alert_text|raw }}</textarea>
+		<script>
+			run_ckeditor('rodo_alert_text',100);
+		</script>
+	</div>
+	<hr>
+	<div class="form-group">
+		<label for="footer_top">{{ 'Footer - top'|trans }}:</label>
+		<textarea name="footer_top" title="{{ 'Footer - top'|trans }}" class="form-control">{{ settings.footer_top|raw }}</textarea>
+		<script>
+			run_ckeditor('footer_top',100);
+		</script>
+	</div>
+	<div class="form-group">
+		<label for="footer_bottom">{{ 'Footer - bottom'|trans }}:</label>
+		<textarea id="footer_bottom_textarea" name="footer_bottom" title="{{ 'Footer - bottom'|trans }}" class="form-control">{{ settings.footer_bottom|raw }}</textarea>
+		<script>
+			run_ckeditor('footer_bottom_textarea',100);
+		</script>
+	</div>
+	<hr>
+	<div class="form-group">
+		<label for="code_style">{{ 'Additional CSS'|trans }}</label>
+		<textarea name="code_style" title="{{ 'Additional CSS'|trans }}" class="form-control">{{ settings.code_style|raw }}</textarea>
+	</div>
+	<div class="form-group">
+		<label for="code_head">{{ 'Additional code in the HEAD'|trans }}</label>
+		<textarea name="code_head" title="{{ 'Additional code in the HEAD'|trans }}" class="form-control">{{ settings.code_head|raw }}</textarea>
+	</div>
+	<div class="form-group">
+		<label for="code_body">{{ 'Additional code in the BODY'|trans }}</label>
+		<textarea name="code_body" title="{{ 'Additional code in the BODY'|trans }}" class="form-control">{{ settings.code_body|raw }}</textarea>
+	</div>
+	<div class="form-group">
+		<input type="submit" value="{{ 'Save'|trans }}" class="btn btn-primary">
+	</div>
+</form>
+{% endblock %}
