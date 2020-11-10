@@ -14,7 +14,7 @@
 	<!-- CSS style -->
 	{% block css %}
 		<link rel="stylesheet" href="views/{{ settings.template }}/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 		<link rel="stylesheet" href="views/{{ settings.template }}/css/style.css?{{ settings.assets_version }}"/>
 		{% if settings.favicon %}<link rel="shortcut icon" href="{{ settings.favicon }}">{% endif %}
 		{% if settings.code_style %}<style>{{ settings.code_style|raw }}</style>{% endif %}
@@ -34,7 +34,7 @@
 </head>
 <body>
 	<div id="top" class="container-fluid">
-		<p class="text-right small text-white mb-0">Corta 1.0</p>
+		<p class="text-right small text-white mb-0">Corta 1.1</p>
 	</div>
 	<nav class="navbar fixed-top navbar-expand-md navbar-light" id="menu_box">
 		<a class="navbar-brand" href="{{ settings.base_url }}" title="{{ settings.title }}">{% if settings.logo %}<img src="{{ settings.logo }}" alt="{{ settings.title }}">{% else %}{{ settings.title }}{% endif %}</a>
@@ -149,7 +149,7 @@
 
 	<!-- JS javascript -->
 	{% block javascript %}
-		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="js/jquery-3.5.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="views/{{ settings.template }}/js/engine.js?{{ settings.assets_version }}"></script>
 
