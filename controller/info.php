@@ -1,7 +1,7 @@
 <?php
 /************************************************************************
  * Link shortener script Corta
- * Copyright (c) 2020 by IT Works Better https://itworksbetter.net
+ * Copyright (c) 2020 - 2021 by IT Works Better https://itworksbetter.net
  * Project by Kamil Wyremski https://wyremski.pl
  * 
  * All right reserved
