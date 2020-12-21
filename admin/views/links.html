@@ -28,11 +28,11 @@
 		<div class="col-lg-3 col-sm-6">
 			<label for="date">{{ 'Date added'|trans }}: </label>
 			<div class="input-group">
-				<input name="date_from" title="{{ 'Select the starting date'|trans }}" type="text" max="{{ 'now'|date('Y-m-d') }}" value="{{ get.date_from }}" class="form-control datepicker">
+				<input name="date_from" title="{{ 'Select the starting date'|trans }}" type="date" max="{{ 'now'|date('Y-m-d') }}" value="{{ get.date_from }}" class="form-control">
 				<div class="input-group-append input-group-prepend">
 					<span class="input-group-text"> - </span>
 				</div>
-				<input name="date_to" title="{{ 'Select the end date'|trans }}" type="text" max="{{ 'now'|date('Y-m-d') }}" value="{{ get.date_to }}" class="form-control datepicker">
+				<input name="date_to" title="{{ 'Select the end date'|trans }}" type="date" max="{{ 'now'|date('Y-m-d') }}" value="{{ get.date_to }}" class="form-control">
 			</div>
 		</div>
 		<div class="col-lg-2 col-sm-6">
