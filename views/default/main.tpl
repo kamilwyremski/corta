@@ -34,7 +34,7 @@
 </head>
 <body>
 	<div id="top" class="container-fluid">
-		<p class="text-right small text-white mb-0">Corta 1.1</p>
+		<p class="text-right small text-white mb-0">Corta 1.2</p>
 	</div>
 	<nav class="navbar fixed-top navbar-expand-md navbar-light" id="menu_box">
 		<a class="navbar-brand" href="{{ settings.base_url }}" title="{{ settings.title }}">{% if settings.logo %}<img src="{{ settings.logo }}" alt="{{ settings.title }}">{% else %}{{ settings.title }}{% endif %}</a>
