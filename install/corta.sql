@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `mails_queue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `receiver` varchar(64) NOT NULL,
   `action` varchar(32) NOT NULL,
-  `data` mediumtext NOT NULL,
+  `data` longtext NOT NULL,
   `priority` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -259,7 +259,7 @@ INSERT INTO `settings` (`name`, `value`) VALUES
 ('facebook_side_panel', ''),
 ('favicon', ''),
 ('footer_bottom', '<p class=\"mb-2\">Strona pokazowa skryptu skracania link&oacute;w CORTA</p>\r\n'),
-('footer_text', '<p class=\"small\">Project 2020 by <a href=\"https://itworksbetter.net\" target=\"_blank\" title=\"Creating websites\">IT Works Better</a></p>'),
+('footer_text', '<p class=\"small\">Project 2020 - 2021 by <a href=\"https://itworksbetter.net\" target=\"_blank\" title=\"Creating websites\">IT Works Better</a></p>'),
 ('footer_top', '<p>CORTA to skrypt strony www służącej do skracania&nbsp;link&oacute;w URL.&nbsp;Dzięki niemu długi, nieprzyjazny adres URL zamienisz na kr&oacute;tki i łatwy do zapamiętania.</p>\r\n\r\n<p>Zainteresowanych zapraszam do zakupu na <a href=\"https://skrypty.sattel.pl/skrypty-stron-www/149-skrypt-skracacza-linkow-corta.html\" title=\"Skrypt skracacza linków Corta\">skrypty.sattel.pl/skrypty-stron-www/149-skrypt-skracacza-linkow-corta.html</a></p>\r\n'),
 ('generate_sitemap', '1'),
 ('index_page', '<h4 style=\"text-align:center\">PODAJ ADRES URL DO SKR&Oacute;CENIA</h4>\r\n'),
