@@ -19,18 +19,6 @@ $(document).ready(function(){
 		$(this).blur();
 	})
 	
-	const $menu = $('#menu_box'), $top = $('#top');
-	function scroll() {
-		let window_scrolltop = $(window).scrollTop(), top_height = $top.height() + 8;
-		if(window_scrolltop >= top_height) {
-			$menu.css('top',0);
-		}else{
-			$menu.css('top',top_height - window_scrolltop);
-		}
-	}
-	scroll();
-	document.onscroll = scroll;
-
 	$("#facebook_side").hover(function(){
 			$(this).stop(true,false).animate({right: "0px"}, 500 );},
 		function(){
