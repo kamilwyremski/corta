@@ -26,13 +26,12 @@ a:hover{
 	display: inline-block; vertical-align: top; padding: 7px;
 }
 .btn.focus, .btn:focus {
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0,0,0,.25);
+  outline: 0;  box-shadow: 0 0 0 0.2rem rgba(0,0,0,.25);
+}
+.grecaptcha-badge { 
+	visibility: hidden; 
 }
 /* top & menu nav*/
-#top{
-	background-color: #422828; padding: 4px 20px;
-}
 #menu_box{
 	background-color: white; border-bottom: solid 1px #e8e8e8;
 }

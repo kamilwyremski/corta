@@ -45,9 +45,12 @@
 			{% endif %}
 			<div class="form-group row {% if error.captcha %}was-validated{% endif %}">
 				{% if settings.recaptcha_site_key and settings.recaptcha_secret_key %}
-					<div class="offset-sm-4 col-sm-8 offset-md-2 col-md-10">
-						<div class="g-recaptcha" data-sitekey="{{ settings.recaptcha_site_key }}"></div>
-						{% if error.captcha %}<p class="text-danger">{{ error.captcha }}</p>{% endif %}
+					<input type="hidden" name="recaptcha_response" class="recaptchaResponse">
+					<div class="col-sm-8 col-md-10 offset-sm-4 offset-md-2">
+						{% if error.captcha %}
+							<p class="text-danger">{{ error.captcha }}</p>
+						{% endif %}
+						<p><small>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="nofollow">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="nofollow">Terms of Service</a> apply.</small></p>
 					</div>
 				{% else %}
 					<label for="captcha" class="col-sm-4 col-md-2 col-form-label">{{ 'Captcha'|trans }}</label>
