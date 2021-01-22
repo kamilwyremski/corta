@@ -3,7 +3,7 @@
     "license": "proprietary",
 	"name": "kamilwyremski/corta",
 	"description": "Link shortener script",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"homepage": "https://corta.itworksbetter.net",
 	"authors": [
         {
