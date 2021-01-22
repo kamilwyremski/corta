@@ -33,9 +33,6 @@
 	{{ settings.code_head|raw }}
 </head>
 <body>
-	<div id="top" class="container-fluid">
-		<p class="text-right small text-white mb-0">Corta 1.2</p>
-	</div>
 	<nav class="navbar fixed-top navbar-expand-md navbar-light" id="menu_box">
 		<a class="navbar-brand" href="{{ settings.base_url }}" title="{{ settings.title }}">{% if settings.logo %}<img src="{{ settings.logo }}" alt="{{ settings.title }}">{% else %}{{ settings.title }}{% endif %}</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +77,8 @@
 							</div>
 							<div class="form-group {% if error.captcha %}was-validated{% endif %}">
 								{% if settings.recaptcha_site_key and settings.recaptcha_secret_key %}
-									<div class="g-recaptcha" data-sitekey="{{ settings.recaptcha_site_key }}"></div>
+									<input type="hidden" name="recaptcha_response" class="recaptchaResponse">
+									<p><small>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="nofollow">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="nofollow">Terms of Service</a> apply.</small></p>
 								{% else %}
 									<label for="newsletter_captcha">{{ 'Captcha'|trans }}</label>
 									<img src="{{ path('captcha') }}" alt="captcha">
@@ -119,7 +117,6 @@
 		</div>
 		<div id="footer_bottom" class="text-center">
 			{{ settings.footer_bottom|raw }}
-			{{ settings.footer_text|raw }}
 		</div>
 	</footer>
 
@@ -165,7 +162,17 @@
 		{% endif %}
 		
 		{% if settings.recaptcha_site_key and settings.recaptcha_secret_key %}
-			<script src="https://www.google.com/recaptcha/api.js"></script>
+			<script src="https://www.google.com/recaptcha/api.js?render={{ settings.recaptcha_site_key }}"></script>
+			<script>
+				grecaptcha.ready(function () {
+					grecaptcha.execute('{{ settings.recaptcha_site_key }}', { action: 'login' }).then(function (token) {
+						var elms = document.getElementsByClassName('recaptchaResponse')
+						for (var i = 0; i < elms.length; i++) {
+							elms[i].setAttribute("value", token);
+						}
+					});
+				});
+			</script>
 		{% endif %}
 
 		{{ settings.analytics|raw }}
