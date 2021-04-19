@@ -156,7 +156,7 @@ class link {
             }
             return false;
         }
-        return false;
+        return true;
     }
 
 	public static function addHttp(string $url){

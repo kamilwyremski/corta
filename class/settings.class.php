@@ -61,7 +61,7 @@ class settings {
 			$black_list_email = array_map('trim', array_filter(explode(PHP_EOL, $settings['black_list_email'])));
 			array_push($black_list_email,$email);
 			asort($black_list_email);
-			$black_list_email = implode(array_unique($black_list_email),PHP_EOL);
+			$black_list_email = implode(PHP_EOL, array_unique($black_list_email));
 			$sth = $db->prepare('UPDATE `'._DB_PREFIX_.'settings` SET value=:value WHERE name="black_list_email" limit 1');
 			$sth->bindValue(':value', $black_list_email, PDO::PARAM_STR);
 			$sth->execute();
@@ -74,7 +74,7 @@ class settings {
 			$black_list_ip = array_map('trim', array_filter(explode(PHP_EOL, $settings['black_list_ip'])));
 			array_push($black_list_ip,$ip);
 			asort($black_list_ip);
-			$black_list_ip = implode(array_unique($black_list_ip),PHP_EOL);
+			$black_list_ip = implode(PHP_EOL, array_unique($black_list_ip));
 			$sth = $db->prepare('UPDATE `'._DB_PREFIX_.'settings` SET value=:value WHERE name="black_list_ip" limit 1');
 			$sth->bindValue(':value', $black_list_ip, PDO::PARAM_STR);
 			$sth->execute();

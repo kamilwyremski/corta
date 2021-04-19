@@ -24,11 +24,11 @@ if($admin->is_logged()){
 
     $_POST['black_list_email'] = array_map('trim', array_filter(explode(PHP_EOL, $_POST['black_list_email'])));
     asort($_POST['black_list_email']);
-    $_POST['black_list_email'] = implode(array_unique($_POST['black_list_email']),PHP_EOL);
+    $_POST['black_list_email'] = implode(PHP_EOL, array_unique($_POST['black_list_email']));
 
     $_POST['black_list_ip'] = array_map('trim', array_filter(explode(PHP_EOL, $_POST['black_list_ip'])));
     asort($_POST['black_list_ip']);
-    $_POST['black_list_ip'] = implode(array_unique( $_POST['black_list_ip']),PHP_EOL);
+    $_POST['black_list_ip'] = implode(PHP_EOL, array_unique( $_POST['black_list_ip']));
 
     settings::saveArrays(['black_list_email','black_list_ip','black_list_domains']);
 
