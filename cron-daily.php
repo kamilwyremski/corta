@@ -21,8 +21,6 @@ function cron_daily(){
 
 	$db->query('DELETE FROM '._DB_PREFIX_.'admin_session WHERE date<(NOW() - INTERVAL 1 DAY)');
 
-	$db->query('UPDATE '._DB_PREFIX_.'reset_password SET active=0 WHERE active=1 AND date<(NOW() - INTERVAL 1 DAY)');
-
 	$db->query('DELETE FROM '._DB_PREFIX_.'session_link WHERE date<(NOW() - INTERVAL 1 DAY)');
 
 	$db->query('DELETE FROM '._DB_PREFIX_.'newsletter WHERE active=0 AND date<(NOW() - INTERVAL 1 DAY)');
