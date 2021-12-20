@@ -58,7 +58,7 @@
 			{% for item in logs_links %}
 				<tr>
 					<td class="text-center">{{ loop.index+pagination.limit_start }}</td>
-					<td>{% if item.url %}<a href="{{ item.url }}" target="_blank">{{ item.url }}</a>{% else %}ID: {{ item.link_id }}{% endif %}</td>
+					<td class="list-links-td">{% if item.url %}<a href="{{ item.url }}" target="_blank">{{ item.url }}</a>{% else %}ID: {{ item.link_id }}{% endif %}</td>
 					<td>{% if item.short_url %}<a href="{{ path('short_url',item.link_id,item.short_url) }}" target="_blank">{{ item.short_url }}</a>{% endif %}</td>
 					<td class="text-center">{{ item.ip }}</td>
 					<td class="text-center"><b>{{ item.date|date('Y-m-d') }}</b><br>{{ item.date|date('H:i') }}</td>
