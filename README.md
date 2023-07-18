@@ -1,14 +1,13 @@
 # corta
-Skrypt skracacza linków Corta
+Corta link shortener script
 
-Demo skryptu: https://corta.itworksbetter.net/
+Demo: https://corta.itworksbetter.net/
 
-Opis: https://blog.wyremski.pl/skrypt-skracacza-linkow-corta/
+Description: https://blog.wyremski.pl/skrypt-skracacza-linkow-corta/
 
-Instrukcja: https://blog.wyremski.pl/instrukcja-instalacji-i-konfiguracji-skryptow/
+Instruction: https://blog.wyremski.pl/instrukcja-instalacji-i-konfiguracji-skryptow/
 
-Po skopiowaniu plików na serwer uruchom w konsoli 
+After copying the files to the server in the site directory, run the command to install the packages
 ```
 composer install
 ```
-aby zainstalować niezbędne pakiety
