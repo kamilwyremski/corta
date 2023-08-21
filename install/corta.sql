@@ -258,7 +258,7 @@ INSERT INTO `settings` (`name`, `value`) VALUES
 ('facebook_lang', 'pl_PL'),
 ('facebook_side_panel', ''),
 ('favicon', ''),
-('footer_bottom', '<p class=\"mb-2\">Strona pokazowa skryptu skracania link&oacute;w CORTA</p>\r\n<p class=\"small\">Corta 1.3 &copy; Project 2020 - 2022 by <a href=\"https://itworksbetter.net\" target=\"_blank\" title=\"Creating websites\">IT Works Better</a></p>'),
+('footer_bottom', '<p class=\"mb-2\">Strona pokazowa skryptu skracania link&oacute;w CORTA</p>'),
 ('footer_top', '<p>CORTA to skrypt strony www służącej do skracania&nbsp;link&oacute;w URL.&nbsp;Dzięki niemu długi, nieprzyjazny adres URL zamienisz na kr&oacute;tki i łatwy do zapamiętania.</p>\r\n\r\n<p>Zainteresowanych zapraszam do zakupu na <a href=\"https://sklep.itworksbetter.net/skrypty-stron-www/7-skrypt-skracacza-linkow-corta.html\" title=\"Skrypt skracacza linków Corta\">sklep.itworksbetter.net/skrypty-stron-www/7-skrypt-skracacza-linkow-corta.html</a></p>\r\n'),
 ('generate_sitemap', '1'),
 ('index_page', '<h4 style=\"text-align:center\">PODAJ ADRES URL DO SKR&Oacute;CENIA</h4>\r\n'),
