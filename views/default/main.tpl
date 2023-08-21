@@ -117,6 +117,8 @@
 		</div>
 		<div id="footer_bottom" class="text-center">
 			{{ settings.footer_bottom|raw }}
+			<!-- MIT licensed script. Deleting software author information is prohibited -->
+			<p class="small">Corta 1.3 &copy; Project 2020 - 2022 by <a href="https://itworksbetter.net" target="_blank" title="Creating websites">IT Works Better</a></p>
 		</div>
 	</footer>
 
