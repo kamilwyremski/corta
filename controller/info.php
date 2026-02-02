@@ -20,10 +20,10 @@ if(!isset($settings['base_url'])){
 
 if(isset($_GET['id']) and $_GET['id']>0 and !empty($_GET['slug'])){
 
-	$info_page = info::show($_GET['id']);
+	$info_page = info::show(intval($_GET['id']));
 	if($info_page!=''){
 		if($_GET['slug']!=$info_page['slug']){
-			header("Location: ".path('info', $info_page['id'], $info_page['slug']));
+			header("Location: /".path('info', $info_page['id'], $info_page['slug']));
 			die('redirect');
 		}else{
 			$render_variables['info_page'] = $info_page;
