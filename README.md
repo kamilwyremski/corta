@@ -1,8 +1,6 @@
 # corta
 Corta link shortener script
 
-Demo: https://corta.itworksbetter.net/
-
 Description: https://blog.wyremski.pl/skrypt-skracacza-linkow-corta/
 
 Instruction: https://blog.wyremski.pl/instrukcja-instalacji-i-konfiguracji-skryptow/
